@@ -1,16 +1,24 @@
-# React + Vite
+# URL Phishing Checker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Run locally
 
-Currently, two official plugins are available:
+Install the Python dependencies and start the API from the project directory:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```powershell
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload
+```
 
-## React Compiler
+In another terminal, start the React app:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```powershell
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+The API loads `URL_Phishing_model.joblib` from the project directory. During
+development, Vite forwards `/api` requests to `http://127.0.0.1:8000`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The API currently interprets the model's numeric class `1` as phishing and
+class `0` as legitimate. Make sure that matches how the model's training labels
+were encoded.

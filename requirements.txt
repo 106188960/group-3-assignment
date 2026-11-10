@@ -1,4 +1,7 @@
 fastapi
+joblib
+pandas
 redis
+scikit-learn==1.9.0
 types-redis
 uvicorn
